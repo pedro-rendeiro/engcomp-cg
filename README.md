@@ -1,7 +1,7 @@
 # Federal University of Pará
-## Computer Graphics Course
-### Pedro Rendeiro
+## Computer Graphics 2023
+Student: Pedro Rendeiro
 
---
+Code and notes from computer graphics course taken as undergraduate student in computer engineering. 
 
-This is a test.
+
