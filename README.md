@@ -6,4 +6,4 @@ Code and notes from computer graphics course taken as undergraduate student in c
 Follow [this tutorial](https://youtu.be/xk5Kw6frDG4).
 
 ### Compile OpenGL code
-Run ```g++ {input}.cpp {output}.exe -lGL -lGLU -lglut```
+Run ```g++ {input}.cpp {output}.exe -Wall -lGL -lGLU -lglut -lglfw```
