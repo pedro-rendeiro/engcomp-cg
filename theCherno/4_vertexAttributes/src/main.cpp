@@ -69,7 +69,10 @@ int main(int, char**) {
         
         /*
             Draw from a vertex buffer
-            It's not gonna work, because the previous code is incomplete
+            Note that we haven't provided the shader yet
+            But some manufacturers will used a default shader
+            So it may work, as well as it may not
+            It is completely manufacturer dependant
         */
         glDrawArrays(GL_TRIANGLES, 0, 3);  // (type, offset, #arrays)
         
