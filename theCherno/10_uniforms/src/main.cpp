@@ -136,6 +136,14 @@ int main(int, char**) {
     unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
 
+    GLint location = glGetUniformLocation(shader, "u_Color");
+    glUniform4f(location, 0.4f, 0.0f, 0.4f, 1.0f);
+
+    // Minimum number of updates before updating screen
+    glfwSwapInterval(1);
+    float g = 0.0f;
+    float increment = 0.05f;
+
     while(!glfwWindowShouldClose(window)){
         glClear(GL_COLOR_BUFFER_BIT);
         
@@ -143,8 +151,13 @@ int main(int, char**) {
         // *We can use nullptr because the buffer has been bound.
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         
-        // Draw by the vertices
-        // glDrawArrays(GL_TRIANGLES, 0, 3);  // (type, offset, #arrays)
+        if(g > 1.0f)        increment = -0.05f;
+        else if(g < 0.0f)   increment =  0.05f;
+
+        g += increment;
+
+        glUniform4f(location, 0.4f, g, 0.4f, 1.0f);
+
         
         // Swap front and back buffers (ping pong?)
         glfwSwapBuffers(window);
