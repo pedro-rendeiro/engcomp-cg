@@ -6,9 +6,15 @@ include(CTest)
 enable_testing()
 
 add_executable(classes_part_one
-    src/main.cpp
+    src/Main.cpp
     src/glad.h
     src/glad.c
+    src/Renderer.h
+    src/Renderer.cpp
+    src/VertexBuffer.h
+    src/VertexBuffer.cpp
+    src/IndexBuffer.h
+    src/IndexBuffer.cpp
 )
 
 target_link_libraries(classes_part_one glfw)
