@@ -1,6 +1,6 @@
 #include "Renderer.h"
 #include "Shader.h"
-#include "glad.h"
+#include "vendor/glad.h""
 #include <fstream>
 #include <string>
 #include <sstream>

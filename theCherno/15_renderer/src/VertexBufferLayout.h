@@ -2,7 +2,7 @@
 
 #include "Renderer.h"
 #include <vector>
-#include "glad.h"
+#include "vendor/glad.h""
 
 // Struct of a single element (attribute) of a vertex buffer
 struct VertexBufferElement
