@@ -5,9 +5,11 @@
 #include <string>
 #include <sstream>
 
+#define ASSERT(x) if(!(x)) __builtin_trap();
+
 #define GLCall(x)   GLClearError();\
     x;\
-    GLLogCall(#x, __FILE__, __LINE__)
+    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
 
 static void GLClearError(){
     while(glGetError() != GL_NO_ERROR);
