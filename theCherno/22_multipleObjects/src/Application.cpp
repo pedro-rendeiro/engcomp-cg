@@ -152,9 +152,9 @@ int main()
     }
 
     // Cleanup
-    // ImGui_ImplGlfwGL3_Shutdown();
-    // ImGui::DestroyContext();
-    // glfwTerminate();
+    ImGui_ImplGlfwGL3_Shutdown();
+    ImGui::DestroyContext();
+    glfwTerminate();
     return 0;
 
 }
