@@ -12,6 +12,10 @@
 #include "Shader.h"
 #include "Texture.h"
 
+#include "vendor/glm/glm.hpp"
+#include "vendor/glm/gtc/matrix_transform.hpp"
+
+
 int main()
 {
     if(!glfwInit()) return -1;
@@ -72,10 +76,13 @@ int main()
         // Instantiates an IB object
         IndexBuffer ib(indices, 6);
 
+        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
         // Instantiates a Shader object
         Shader shader("../res/shaders/basic.shader");
         shader.Bind();
-        shader.SetUniform4v("u_Color", 0.4, 0.0, 0.4, 1.0);
+        shader.SetUniform4f("u_Color", 0.4, 0.0, 0.4, 1.0);
+        shader.SetUniformMath4f("u_MVP", proj);
 
         // Instantiates a Texture object
         Texture texture("../res/textures/awesomeface.png");
@@ -109,7 +116,7 @@ int main()
 
             g += increment;
             
-            shader.SetUniform4v("u_Color", 0.4f, g, 0.4f, 1.0f);
+            shader.SetUniform4f("u_Color", 0.4f, g, 0.4f, 1.0f);
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
