@@ -25,7 +25,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window;
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(1280, 720, "Hello World", NULL, NULL);
     
     if(!window)
     {
@@ -43,10 +43,10 @@ int main()
 
         float positions[] =
         {
-            -0.5f,  -0.5f,  0.0f,  0.0f,  // 0
-             0.5f,  -0.5f,  1.0f,  0.0f,  // 1
-             0.5f,   0.5f,  1.0f,  1.0f,  // 2
-            -0.5f,   0.5f,  0.0f,  1.0f   // 3
+            100.0f,  100.0f,  0.0f,  0.0f,  // 0
+            300.0f,  100.0f,  1.0f,  0.0f,  // 1
+            300.0f,  300.0f,  1.0f,  1.0f,  // 2
+            100.0f,  300.0f,  0.0f,  1.0f   // 3
         };
 
         unsigned int indices[] =
@@ -77,7 +77,7 @@ int main()
         IndexBuffer ib(indices, 6);
 
         // Projection matrix
-        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+        glm::mat4 proj = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f);
 
         // Instantiates a Shader object
         Shader shader("../res/shaders/basic.shader");
