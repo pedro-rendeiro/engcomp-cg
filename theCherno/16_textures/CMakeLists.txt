@@ -6,7 +6,7 @@ include(CTest)
 enable_testing()
 
 add_executable(textures
-    src/Main.cpp
+    src/Application.cpp
     src/Renderer.h
     src/Renderer.cpp
     src/VertexBuffer.h

@@ -51,6 +51,9 @@ int main()
             2, 3, 0
         };
 
+        // Enables blending and defines the math config
+        // Technicaly I should do this
+        // But in my experience, it makes no difference
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
