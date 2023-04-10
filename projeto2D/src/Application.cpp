@@ -86,6 +86,7 @@ int main()
         // Instantiates a Shader object
         Shader shader("../res/shaders/basic.shader");
         shader.Bind();
+        shader.SetUniform4f("u_Color", 0.95, 0.95, 0.95, 1.0);
 
         // Instantiates a Texture object
         Texture texture("../res/textures/awesomeface.png");
@@ -103,6 +104,8 @@ int main()
 
         // Minimum number of updates before updating screen
         glfwSwapInterval(1);
+        float c = 0.95f;
+        float increment = -0.001f;
 
         // Matrix transformation
         glm::mat4 model = glm::mat4(1.0f);
@@ -128,37 +131,47 @@ int main()
             renderer.Clear();
             ImGui_ImplGlfwGL3_NewFrame();
             
+            // Update square color
+            {
+                if(c <= 0.3f)          increment =  0.005f;
+                else if(c >= 0.94f)    increment = -0.005f;
+                c += increment;
+                shader.Bind();
+                shader.SetUniform4f("u_Color", c, c, c, 1.0);
+            }
+
             // Draw instance A
             {
-                model = glm::translate(glm::mat4(1.0f), translationA);  // Translate
-                model = glm::rotate(model, glm::radians(rotationA), glm::vec3(0.0, 0.0, 1.0));
-                model = glm::scale(model, scaleA);
+                model = glm::translate(glm::mat4(1.0f), translationA);                          // Translate
+                model = glm::rotate(model, glm::radians(rotationA), glm::vec3(0.0, 0.0, 1.0));  // Rotate
+                model = glm::scale(model, scaleA);                                              // Scale
                 mvp = proj * view * model;
                 shader.Bind();
                 shader.SetUniformMath4f("u_MVP", mvp);
+                
                 renderer.Draw(va, ib, shader);
             }
 
             // Draw instance B
             {
-                model = glm::translate(glm::mat4(1.0f), translationB);  // Translate
-                model = glm::rotate(model, glm::radians(rotationB), glm::vec3(0.0, 0.0, 1.0));
-                model = glm::scale(model, scaleB);
+                model = glm::translate(glm::mat4(1.0f), translationB);                          // Translate
+                model = glm::rotate(model, glm::radians(rotationB), glm::vec3(0.0, 0.0, 1.0));  // Rotate
+                model = glm::scale(model, scaleB);                                              // Scale
                 mvp = proj * view * model;
-                shader.Bind();
                 shader.SetUniformMath4f("u_MVP", mvp);
+                
                 renderer.Draw(va, ib, shader);
             }
 
             ImGui::Text("Transformations on A");
             ImGui::SliderFloat2("Translation A", &translationA.x, 0.0f, 1280.0f);
             ImGui::SliderFloat("Rotation A", &rotationA, -360.0f, 360.0f);
-            ImGui::SliderFloat2("Scaling A", &scaleA.x, 0.0f, 10.0f);
+            ImGui::SliderFloat2("Scaling A", &scaleA.x, 0.0f, 5.0f);
 
             ImGui::Text("\nTransformations on B");
             ImGui::SliderFloat2("Translation B", &translationB.x, 0.0f, 1280.0f);
             ImGui::SliderFloat("Rotation B", &rotationB, -360.0f, 360.0f);
-            ImGui::SliderFloat2("Scaling B", &scaleB.x, 0.0f, 10.0f);
+            ImGui::SliderFloat2("Scaling B", &scaleB.x, 0.0f, 5.0f);
 
             ImGui::Render();
             ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());

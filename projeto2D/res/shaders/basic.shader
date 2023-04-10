@@ -17,6 +17,8 @@ void main()
 #shader fragment
 #version 330 core
 
+#define SHOW_SQUARE 1
+
 layout(location = 0) out vec4 color;
 
 in vec2 v_texCoord;
@@ -27,6 +29,10 @@ uniform sampler2D u_Texture;
 void main()
 {
    vec4 texColor = texture(u_Texture, v_texCoord);
-   // color = u_Color;
+#if SHOW_SQUARE
+   if (texColor.a > 0.0)   color = texColor;
+   else                    color = u_Color;
+#else
    color = texColor;
+#endif
 };
