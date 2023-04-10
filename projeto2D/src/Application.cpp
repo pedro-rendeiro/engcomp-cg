@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include "Renderer.h"
-
 #include "IndexBuffer.h"
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
@@ -62,13 +61,12 @@ int main()
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-        // Instantiates and shapes a VB layout object
+        // Instantiates a VB object
+        VertexBuffer vb(vertices, 4 * 4 * sizeof(float));
+        
         VertexBufferLayout layout;
         layout.Push<float>(2);  // position
         layout.Push<float>(2);  // texture coordinates
-        
-        // Instantiates a VB object
-        VertexBuffer vb(vertices, 4 * 4 * sizeof(float));
         
         // Instantiates a VA object and links it to a layout and a bufer
         VertexArray va;

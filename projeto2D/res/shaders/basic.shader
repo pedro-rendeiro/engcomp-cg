@@ -9,7 +9,7 @@ uniform mat4 u_MVP;
 
 void main()
 {
-   // The multiplication moves it to the appropriate space
+   // The multiplication moves it to the proper place
    gl_Position = u_MVP * position;
    v_texCoord = texCoord;
 };
@@ -20,7 +20,6 @@ void main()
 #define SHOW_SQUARE 0
 
 layout(location = 0) out vec4 color;
-
 in vec2 v_texCoord;
 
 uniform vec4 u_Color;
