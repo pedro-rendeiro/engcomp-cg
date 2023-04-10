@@ -17,7 +17,7 @@ void main()
 #shader fragment
 #version 330 core
 
-#define SHOW_SQUARE 1
+#define SHOW_SQUARE 0
 
 layout(location = 0) out vec4 color;
 

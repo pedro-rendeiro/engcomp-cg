@@ -44,7 +44,7 @@ int main()
 
     {
 
-        float positions[] =
+        float vertices[] =
         {
             -100.0f,  -100.0f,  0.0f,  0.0f,  // 0
              100.0f,  -100.0f,  1.0f,  0.0f,  // 1
@@ -57,10 +57,8 @@ int main()
             0, 1, 2,
             2, 3, 0
         };
-
+        
         // Enables blending and defines the math config
-        // Technicaly I should do this
-        // But in my experience, it makes no difference
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
@@ -70,7 +68,7 @@ int main()
         layout.Push<float>(2);  // texture coordinates
         
         // Instantiates a VB object
-        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
+        VertexBuffer vb(vertices, 4 * 4 * sizeof(float));
         
         // Instantiates a VA object and links it to a layout and a bufer
         VertexArray va;
@@ -80,7 +78,7 @@ int main()
         IndexBuffer ib(indices, 6);
 
         // MVP matrix
-        glm::mat4 proj = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f);      // Projection matrix
+        glm::mat4 proj = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f);  // Projection matrix
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));   // View matrix
 
         // Instantiates a Shader object
@@ -114,8 +112,8 @@ int main()
         glm::vec3 translationB(100, 100, 0);
         float rotationA =  45.0f;
         float rotationB = -45.0f;
-        glm::vec3 scaleA(0.5, 0.5, 0.5);
-        glm::vec3 scaleB(2.0, 2.0, 2.0);
+        glm::vec3 scaleA(0.5, 0.5, 0.0);
+        glm::vec3 scaleB(2.0, 2.0, 0.0);
         
         // glMultMatrixf(transformationMatrix);
 
@@ -124,7 +122,6 @@ int main()
         vb.Unbind();
         ib.Unbind();
         va.Unbind();
-
 
         while(!glfwWindowShouldClose(window))
         {
